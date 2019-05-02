@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=UnifrakturCook:700');
+
+.jumbotron{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjLwcIchpyI6hOIOHKukxd56yxc6Je_iQkCqRNZLyt267txMTyNw");
+    background-size:cover;
+    margin: 20px;
+    /* background-color: aquamarine; */
+    background-repeat: no-repeat;
+}
+
+.h1Style{
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 90px;
+}
+
+.input-group{
+    max-width: 300px;
+    margin: 0 auto;
+}
