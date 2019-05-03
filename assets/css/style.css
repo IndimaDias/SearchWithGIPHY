@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=UnifrakturCook:700');
 
+.bodyStyle{
+    background-color: rgb(185, 221, 250);
+}
+
 .jumbotron{
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjLwcIchpyI6hOIOHKukxd56yxc6Je_iQkCqRNZLyt267txMTyNw");
     background-size:cover;
@@ -16,4 +20,17 @@
 .input-group{
     max-width: 300px;
     margin: 0 auto;
+}
+
+.borderStyle{
+    border: darkblue solid 5px;
+    border-radius: 8px;
+    
+}
+
+.textStyle{
+    /* text-align: center !important; */
+    font-family:'UnifrakturCook', cursive;
+    font-size: 25px;
+    font-weight: bold;
 }
