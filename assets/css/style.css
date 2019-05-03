@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=UnifrakturCook:700');
 
 .bodyStyle{
-    background-color: rgb(185, 221, 250);
+    background-color: rgb(217, 253, 119);
 }
 
 .jumbotron{
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjLwcIchpyI6hOIOHKukxd56yxc6Je_iQkCqRNZLyt267txMTyNw");
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiy6JUFakJatwRTHhsjLbnCH4kkr0l-zxNVVVhn3Vkk45Cx_mz");
     background-size:cover;
     margin: 20px;
     /* background-color: aquamarine; */
@@ -15,6 +15,7 @@
 .h1Style{
     font-family: 'UnifrakturCook', cursive;
     font-size: 90px;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
 
 .input-group{

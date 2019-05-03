@@ -92,7 +92,7 @@ $(function(){
         newButton.attr("id","btnTink")
         newButton.attr("data-name",btnText);
         newButton.attr("type","button");
-        newButton.addClass("btnQueryVal btn text-danger border-bottom font-weight-bolder p-0 m-2");
+        newButton.addClass("btnQueryVal btn text-light border-bottom font-weight-bolder p-0 m-2");
         console.log(newButton);
         //add new button to the section with buttons 
         btnDiv.append(newButton);
