@@ -1,6 +1,6 @@
 $(function(){
 
-    var charcterArray = ["Tinkerbell","Cinderella","Sleeping Beauty", "Dumbo", "Mulan"];
+    var characterArray = ["TINKERBELL","CINDERELLA","SLEEPING BEAUTY", "DUMBO", "MULAN"];
 
     var btnDiv  = $("#btnSection");
 
@@ -11,11 +11,11 @@ $(function(){
     // ...................................................................................................................
     function btnLoad(){
         //This function will read the array and load the buttons to the jumbotran
-
+        $("#btnSection").empty();
         // read array with a for loop
-        for (var i=0; i<charcterArray.length; i++){
+        for (var i=0; i<characterArray.length; i++){
             // create a new button for each array item and attributes and classes 
-                createButton(charcterArray[i]);
+                createButton(characterArray[i]);
         }   
     };
 
@@ -23,8 +23,6 @@ $(function(){
     // This function will be executed when character buttons are clicked    
     
         $(document).on("click",".btnQueryVal",function(){
-        // $("#btnTink").on("click" ,function(){
-        debugger;
         // Api key genreated by Giphy.com
         var apiKey = "HH2R2kthUYB18vT3SRR2ePHdC3z3SJpB&q";
 
@@ -51,19 +49,43 @@ $(function(){
             results = response.data;
             // create a new section to add the images 
             var divRow = $("<div>");
-            divRow.addClass("row mt-1 mb-1");
+            divRow.addClass("row mt-1 mb-1 justify-content-center");
             var searchText = $("<p>").text(queryValue);
             divRow.prepend(searchText);
 
             for (var i =0 ; i < results.length; i++){
                 // add image and rating to a new column in the div 
-                var imgCol = $("<div>").addClass("col-md-auto m-1 borderStyle");
-                var imgTag = $("<img>").addClass("row");
-                var ratingTag = $("<p>").addClass("row textStyle");
-                ratingTag.text(results[i].rating.toUpperCase());
-                imgTag.attr("src", results[i].images.fixed_height.url);
 
-                imgCol.append(imgTag, ratingTag);
+                var imgCol = $("<div>").addClass("col-md-auto m-1 borderStyle text-center");
+
+                // image tag
+                var imgTag = $("<img>").addClass("row imgFile");            
+                imgTag.attr("src", results[i].images.fixed_height.url);
+                
+                // tag for title
+                var titleTag = $("<p>").addClass("row textStyle");
+                titleTag.text(getTitleCase(results[i].title));
+
+                // tag for rating
+                var ratingTag = $("<p>").addClass("row textStyle");
+                ratingTag.text("Rating " + results[i].rating.toUpperCase());
+
+                // button to download images. This is not added to the page. for future upgrades
+                var btnDownload = $("<button>").addClass("btn btn-sm row btnFile font-weight-bold");
+                btnDownload.text("Download");
+                btnDownload.attr("data-file",results[i].id);
+                btnDownload.attr('href', "../DownLoads/" ) ;
+                btnDownload.attr('download', results[i].id + ".gif");
+
+                // button to add images to the favorities section. This is not added to the page. for future upgrades
+                var btnfavorite = $("<button>").addClass("btn btn-sm row btnFav font-weight-bold");
+                btnfavorite.text("Add to Favorites");
+                btnfavorite.attr("data-file",results[i].id);
+
+              
+              
+               
+                imgCol.append(imgTag, titleTag, ratingTag);
                 divRow.append(imgCol);
             };
 
@@ -79,16 +101,38 @@ $(function(){
 
         var addBtnText = $("#searchVal").val();
         // console.log(addBtnText);
-        charcterArray.push(addBtnText);
-        createButton(addBtnText);
+        if(buttonExists(addBtnText)){
+            alert("This button exists");
+        }
+        else{
+            // add button value to the array 
+        charcterArray.push(addBtnText.toUpperCase());
+        // display buttons
+        btnLoad();  
+        }
+
         $("#searchVal").val("");
     });  // end of function for btnSubmit on click 
 
     // .................................................................................................................
+    $(document).on("click",".btnFile",function(e){
+    //   function to download images. This is not completed
+        e.preventDefault();
+        var useConfirm = confirm("Do you want to download this image?")
+        window.location.href = '../DownLoads/'+$(this).attr("data-id")+".gif";
+
+    });
+
+    //................................................................................................................
+
+    $(document).on("click", "btnFav",function(){
+        // this function will add images to favorites. Not completed
+    })
+    // .................................................................................................................
     function createButton(btnText){
-       
+       debugger;
         var newButton = $("<button>");            
-        newButton.text(btnText);
+        newButton.text(getTitleCase(btnText));
         newButton.attr("id","btnTink")
         newButton.attr("data-name",btnText);
         newButton.attr("type","button");
@@ -99,4 +143,19 @@ $(function(){
 
     };
 
+    function getTitleCase(imgTitle){
+        //This function converts the parameter value to title case
+        return imgTitle.charAt(0).toUpperCase() + imgTitle.substr(1).toLowerCase();
+    };
+
+    function buttonExists(txtSearch){
+        // This functions checkes if user input is already in the button list.
+        // It first converts the input to uppercase and serch with the array;
+
+        var n = characterArray.includes(txtSearch.toUpperCase());
+
+        return n;
+
+
+    };
 });
